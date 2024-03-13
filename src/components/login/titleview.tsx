@@ -12,13 +12,14 @@ export const TitleView = () => {
                 width={100}
                 height={100}
             />
-            <div className="absolute top-60 left-5 flex items-start justify-start">
+            <div className="absolute top-60 flex items-start justify-start">
                 <Title />
             </div>
-            <div className="absolute top-20 right-5 flex items-end justify-end h-full">
+            <div className="absolute top-20 flex items-end justify-end h-full">
                     <Image
                         src="../../login.svg"
                         alt="login image"
+                        className="w-full h-full"
                         width={100}
                         height={100}
                     />
@@ -26,4 +27,4 @@ export const TitleView = () => {
 
         </div>
     )
-}
+};

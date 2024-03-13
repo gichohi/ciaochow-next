@@ -23,7 +23,8 @@ const config: Config = {
       colors: {
         "primary": "#4CAD73",
         "secondary": "#333333",
-        "tertiary": "#828282"
+        "tertiary": "#828282",
+        "rouge": "#DC143C"
       }
     },
   },

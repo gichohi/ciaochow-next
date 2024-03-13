@@ -9,17 +9,21 @@ export const TitleView = () => {
                 src="../../ellipse.svg"
                 alt="Background Image"
                 className="w-full h-2/4"
+                width={100}
+                height={100}
             />
             <div className="absolute top-60 left-5 flex items-start justify-start">
                 <Title />
             </div>
             <div className="absolute top-24 right-5 flex items-end justify-end h-full">
-                    <Image
-                        src="../../register.svg"
-                        alt="register image"
-                    />
+                <Image
+                    src="../../register.svg"
+                    alt="register image"
+                    className="w-full h-2/4"
+                    width={100}
+                    height={100}
+                />
             </div>
-
         </div>
-    )
+    );
 }

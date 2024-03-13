@@ -1,6 +1,6 @@
-import { ApiResponse, LoginRequest, RegisterRequest } from "../types";
 import axios from 'axios';
 import { BASE_URL } from "../constants";
+import { ApiResponse, LoginRequest, RegisterRequest } from '@/types';
 
 export const loginWithEmail = async (request: LoginRequest): Promise<ApiResponse | undefined> => {
 

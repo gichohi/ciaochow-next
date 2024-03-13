@@ -1,5 +1,5 @@
+import { Chow } from "@/types";
 import { create } from "zustand";
-import { Chow } from "../types";
 
 export interface ChowState {
     chow: Chow;
