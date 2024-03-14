@@ -8,7 +8,7 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 describe('', () => {
     const server = setupServer(
         rest.post(
-            `${BASE_URL}/api/auth/local`,
+            `${BASE_URL}/api/auth/local/register`,
             (_req, res, ctx) => {
                 return res(ctx.status(400), ctx.json(ERROR_MOCK_RESPONSE));
             },
