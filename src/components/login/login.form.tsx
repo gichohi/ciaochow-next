@@ -1,7 +1,9 @@
-import { useLoginStore } from "@/store/login.store";
+import { useAppDispatch } from "@/store/hooks";
+import { addRequest } from "@/store/login.slice";
 import { LoginRequest } from "@/types";
-import { Field, Form, Formik, FormikHelpers, FormikValues } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from 'yup';
+
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -17,12 +19,11 @@ const validationSchema = Yup.object().shape({
         .label('Password')
 });
 
-
 const LoginForm = () => {
-    const loginRequest = useLoginStore();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = (values: LoginRequest, helpers: FormikHelpers<LoginRequest>) => {
-        loginRequest.addRequest({email: values.email, password: values.password});
+        dispatch(addRequest(values));
     }
 
     return (

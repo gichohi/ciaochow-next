@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ContentTitle } from "./content.title";
 import { TabView } from "./tab.view";
 import { TabText } from "./tab.text";

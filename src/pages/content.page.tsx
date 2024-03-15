@@ -4,22 +4,21 @@ import { Button } from "@/components/content/button";
 import { ContentView } from "@/components/content/content.view";
 import { ImageView } from "@/components/content/image.view";
 import { useState } from "react";
-import { useUserStore } from "@/store/User.Store";
 import { getChows } from "@/api";
-import { useChowStore } from "@/store/Content.Store";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { userSelector } from "@/store/user.slice";
+import { addChow } from "@/store/chow.slice";
 
 const ContentPage = ()=> {
 
-    const user = useUserStore(state => state.user);
-    const chowStore = useChowStore();
-
+    const dispatch = useAppDispatch();
+    const selector = useAppSelector(userSelector);
+    
     const [error, setError] = useState("");
-
 
     const chowsHandler = () => {
         const num = Math.floor(Math.random() * 2); 
-        console.log("Index", num);
-        getChows(user.token)
+        getChows(selector.user.token)
         .then((response) => {
             if(response != undefined) {
                 const chow: Chow = {
@@ -28,8 +27,7 @@ const ContentPage = ()=> {
                     image: BASE_URL + response.data[num].attributes.Image.data[0].attributes.url
                 }
                 console.log("Image", chow.image);
-                chowStore.setChow(chow);
-                
+                dispatch(addChow(chow));                
             } else {
                 setError("Chows  Error");
             }

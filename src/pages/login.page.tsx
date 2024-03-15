@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 import LoginForm from "@/components/login/login.form";
 import { TitleView } from "@/components/login/titleview";
 import { loginWithEmail } from "@/api";
-import { useUserStore } from "@/store/user.store.";
-import { useLoginStore } from "@/store/login.store";
+import { loginSelector } from "@/store/login.slice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addUser } from "@/store/user.slice";
+
 
 const LoginPage = () => {
+    const dispatch = useAppDispatch();
+    const loginRequest = useAppSelector(loginSelector);
 
-    const userStore = useUserStore();
-    const loginRequest = useLoginStore(state => state.request);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const email = loginRequest.email;
-        const password = loginRequest.password;
+        const email = loginRequest.request.email;
+        const password = loginRequest.request.password;
         if(email && password){
             loginWithEmail({ email: email, password: password })
             .then((response) => {
@@ -23,7 +25,7 @@ const LoginPage = () => {
                     setError("Login Error");
                 } else {
                     console.log("Login Handler JWT", response.jwt);
-                    userStore.addUser({email: response.user.email, token: response.jwt});
+                    dispatch(addUser({email: response.user.email, token: response.jwt}));
                 }
             })
             .catch((error) => {
@@ -44,3 +46,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage;
+

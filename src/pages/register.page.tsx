@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 import RegisterForm from "@/components/register/register.form";
 import { TitleView } from "@/components/register/titleview";
 import { registerWithEmail } from "@/api";
-import { useRegisterStore } from "@/store/register.store";
+import { useAppSelector } from "@/store/hooks";
+import { registerSelector } from "@/store/register.slice";
 
 const RegisterPage = () => {
 
-    const registerRequest = useRegisterStore(state => state.request);
+    const registerRequest = useAppSelector(registerSelector);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const email = registerRequest.email;
-        const password = registerRequest.password;
+        const username = registerRequest.request.username;
+        const email = registerRequest.request.email;
+        const password = registerRequest.request.password;
         if (email && password) {
-            registerWithEmail({ username: '', email: email, password: password })
+            registerWithEmail({ username: username, email: email, password: password })
                 .then((response) => {
                     if (response == undefined) {
                         console.log("RegisterHandlerError");

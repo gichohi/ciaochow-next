@@ -1,4 +1,5 @@
-import { useRegisterStore } from "@/store/register.store";
+import { useAppDispatch } from "@/store/hooks";
+import { addRequest } from "@/store/register.slice";
 import { RegisterRequest } from "@/types";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from 'yup';
@@ -23,10 +24,10 @@ const validationSchema = Yup.object().shape({
 
 
 const RegisterForm = () => {
-    const registerStore = useRegisterStore();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = (values: RegisterRequest, helpers: FormikHelpers<RegisterRequest>) => {
-        registerStore.addRequest({username: values.username, email: values.email, password: values.password});
+        dispatch(addRequest({username: values.username, email: values.email, password: values.password}));
     }
 
     return (
