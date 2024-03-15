@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import LoginForm from "@/components/login/login.form";
 import { TitleView } from "@/components/login/titleview";
 import { loginWithEmail } from "@/api";
-import { useUserStore } from "@/store/user.store.";
+import { useUserStore } from "@/store/user.store";
 import { useLoginStore } from "@/store/login.store";
 
 const LoginPage = () => {

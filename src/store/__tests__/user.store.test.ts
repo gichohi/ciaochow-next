@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react-hooks";
-import { UserState, useUserStore } from "../user.store.";
+import { UserState, useUserStore } from "../user.store";
 import { User } from "@/types";
 
 

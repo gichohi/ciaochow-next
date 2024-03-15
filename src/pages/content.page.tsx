@@ -4,9 +4,9 @@ import { Button } from "@/components/content/button";
 import { ContentView } from "@/components/content/content.view";
 import { ImageView } from "@/components/content/image.view";
 import { useState } from "react";
-import { useUserStore } from "@/store/User.Store";
 import { getChows } from "@/api";
-import { useChowStore } from "@/store/Content.Store";
+import { useChowStore } from "@/store/content.store";
+import { useUserStore } from "@/store/user.store";
 
 const ContentPage = ()=> {
 
