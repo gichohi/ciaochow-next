@@ -5,7 +5,7 @@ import { TitleView } from "@/components/register/titleview";
 import { registerWithEmail } from "@/api";
 import { useRegisterStore } from "@/store/register.store";
 
-const RegisterPage = () => {
+const RegisterScreen = () => {
 
     const registerRequest = useRegisterStore(state => state.request);
     const [error, setError] = useState("");
@@ -43,4 +43,4 @@ const RegisterPage = () => {
     )
 }
 
-export default RegisterPage;
+export default RegisterScreen;
