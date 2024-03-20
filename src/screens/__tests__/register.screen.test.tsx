@@ -2,20 +2,19 @@ import { BASE_URL } from "@/constants";
 import { ERROR_MOCK_RESPONSE } from "@/msw/mock.data";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import LoginPage from "../login.page";
+import RegisterScreen from "../register.screen";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import LoginForm from "@/components/login/login.form";
 
 describe('', () => {
     const server = setupServer(
         rest.post(
-            `${BASE_URL}/api/auth/local`,
+            `${BASE_URL}/api/auth/local/register`,
             (_req, res, ctx) => {
                 return res(ctx.status(400), ctx.json(ERROR_MOCK_RESPONSE));
             },
         )
     );
-    
+
     beforeAll(() => {
         server.listen();
     });
@@ -32,30 +31,42 @@ describe('', () => {
     it('should display error message on API error', async () => {
 
         const page = render(
-                <LoginPage/>
+            <RegisterScreen />
         );
+        const userInput = page.getByTestId("username") as HTMLInputElement;
+        await waitFor(() => {
+            userInput.focus();
+        });
 
+        act(() => {
+            fireEvent.change(userInput, { target: { value: "test" } });
+        });
 
         const emailInput = page.getByTestId("email") as HTMLInputElement;
-        act(() => {
+        await waitFor(() => {
             emailInput.focus();
+        });
+        act(() => {
             fireEvent.change(emailInput, { target: { value: "test@example.com" } });
         });
-    
+
         const passwordInput = page.getByTestId("password") as HTMLInputElement;
-        act(() => {
+        await waitFor(() => {
             passwordInput.focus();
+        });
+        
+        act(() => {
             fireEvent.change(passwordInput, { target: { value: "demoPassword1" } });
         });
 
-        const loginButton = page.getByTestId("login");
+        const registerButton = page.getByTestId("register");
         act(() => {
-            fireEvent.submit(loginButton);
+            fireEvent.submit(registerButton);
         });
 
         await waitFor(() => {
             const errorLabel = page.getByTestId("error");
-            expect(errorLabel.textContent).toBe("Login Error");
+            expect(errorLabel.textContent).toBe("Register Error");
         });
     })
 })

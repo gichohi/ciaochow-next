@@ -9,6 +9,8 @@ export const TitleView = () => {
                 src="../../ellipse.svg"
                 alt="Background Image"
                 className="w-full h-2/4"
+                width={100}
+                height={100}
             />
             <div className="absolute inset-10 flex items-start justify-center">
                 <Title />
@@ -18,12 +20,16 @@ export const TitleView = () => {
                     <Image
                         src="../../login.svg"
                         alt="login image"
+                        width={100}
+                    height={100}
                     />
                 </div>
                 <div className="h-full">
                     <Image
                         src="../../register.svg"
                         alt="register image"
+                        width={100}
+                        height={100}
                     />
                 </div>
             </div>

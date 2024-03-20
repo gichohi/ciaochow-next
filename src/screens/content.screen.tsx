@@ -8,7 +8,7 @@ import { getChows } from "@/api";
 import { useChowStore } from "@/store/content.store";
 import { useUserStore } from "@/store/user.store";
 
-const ContentPage = ()=> {
+const ContentScreen = ()=> {
 
     const user = useUserStore(state => state.user);
     const chowStore = useChowStore();
@@ -47,4 +47,4 @@ const ContentPage = ()=> {
     );
 }
 
-export default ContentPage;
+export default ContentScreen;

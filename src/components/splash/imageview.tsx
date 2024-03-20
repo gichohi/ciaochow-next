@@ -7,12 +7,16 @@ export const ImageView = () => {
                 <Image
                     src="../../login.svg"
                     alt="login image"
+                    width={100}
+                    height={100}
                 />
             </div>
             <div className="justify-center">
                 <Image
                     src="../../register.svg"
                     alt="register image"
+                    width={100}
+                    height={100}
                 />
             </div>
         </div>

@@ -5,8 +5,11 @@ import { TitleView } from "@/components/login/titleview";
 import { loginWithEmail } from "@/api";
 import { useUserStore } from "@/store/user.store";
 import { useLoginStore } from "@/store/login.store";
+import { useRouter } from "next/navigation";
 
-const LoginPage = () => {
+const LoginScreen = () => {
+
+    const router = useRouter();
 
     const userStore = useUserStore();
     const loginRequest = useLoginStore(state => state.request);
@@ -24,6 +27,7 @@ const LoginPage = () => {
                 } else {
                     console.log("Login Handler JWT", response.jwt);
                     userStore.addUser({email: response.user.email, token: response.jwt});
+                    router.push('/content');
                 }
             })
             .catch((error) => {
@@ -43,4 +47,4 @@ const LoginPage = () => {
     );
 }
 
-export default LoginPage;
+export default LoginScreen;
