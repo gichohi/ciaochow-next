@@ -4,8 +4,11 @@ import RegisterForm from "@/components/register/register.form";
 import { TitleView } from "@/components/register/titleview";
 import { registerWithEmail } from "@/api";
 import { useRegisterStore } from "@/store/register.store";
+import { useRouter } from "next/navigation";
 
 const RegisterScreen = () => {
+
+    const router = useRouter();
 
     const registerRequest = useRegisterStore(state => state.request);
     const [error, setError] = useState("");
@@ -21,6 +24,7 @@ const RegisterScreen = () => {
                         setError("Register Error");
                     } else {
                         console.log("Register Handler JWT", response.jwt);
+                        router.push('/login')
                     }
                 })
                 .catch((error) => {

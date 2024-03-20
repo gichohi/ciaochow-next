@@ -1,6 +1,7 @@
 import { useLoginStore } from "@/store/login.store";
 import { LoginRequest } from "@/types";
 import { Field, Form, Formik, FormikHelpers, FormikValues } from "formik";
+import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -20,6 +21,8 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
     const loginRequest = useLoginStore();
+
+    const router = useRouter();
 
     const handleSubmit = (values: LoginRequest, helpers: FormikHelpers<LoginRequest>) => {
         loginRequest.addRequest({email: values.email, password: values.password});
@@ -61,7 +64,7 @@ const LoginForm = () => {
                                     : <button data-testid="login" type="submit" disabled={!isValid} className="flex justify-center w-full h-12 my-5 py-2 items-center bg-gray-700 rounded-lg">Submit</button>
                         }
                         <div className="flex items-center justify-center mb-5">
-                            <label className="block mb-2 text-sm font-medium text-primary">Dont Have an account? <b>Register</b></label>
+                            <label className="block mb-2 text-sm font-medium text-primary">Dont Have an account? <b onClick={() => router.push('/register')}>Register</b></label>
                         </div>
                     </Form>
                 )}
